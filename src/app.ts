@@ -12,7 +12,11 @@ app.use(express.json());
 // app.use("", router);
 
 app.get('/', (req: Request, res: Response) => {
-  res.send('Hello World!');
+  const a = 10;
+
+  res.send(a);
+
+  console.log("object");
 });
 
 // app.use(notFound);
