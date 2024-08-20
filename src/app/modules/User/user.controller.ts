@@ -5,7 +5,7 @@ import catchAsync from '../../utils/catchAsync';
 import sendResponse from '../../utils/sendResponse';
 import httpStatus from 'http-status';
 
-export const createUserController = catchAsync(async (req, res) => {
+const createUserController = catchAsync(async (req, res) => {
   console.log(req.body);
 
   const result = await UserServices.createUser(req.body);
@@ -18,13 +18,13 @@ export const createUserController = catchAsync(async (req, res) => {
   });
 });
 
-export const getUsersController = async (req: Request, res: Response) => {
-  const users = await getUsers();
+const getUsersController = async (req: Request, res: Response) => {
+  const users = await UserServices.getUsers();
   res.json(users);
 };
 
-export const getUserByIdController = async (req: Request, res: Response) => {
-  const user = await getUserById(req.params.id);
+const getUserByIdController = async (req: Request, res: Response) => {
+  const user = await UserServices.getUserById(req.params.id);
   if (user) {
     res.json(user);
   } else {
@@ -32,22 +32,26 @@ export const getUserByIdController = async (req: Request, res: Response) => {
   }
 };
 
-export const updateUserController = async (req: Request, res: Response) => {
+const updateUserController = async (req: Request, res: Response) => {
   try {
     const validatedData = updateUserSchema.parse(req.body);
-    const user = await updateUser(req.params.id, validatedData);
+    const user = await UserServices.updateUser(req.params.id, validatedData);
     if (user) {
       res.json(user);
     } else {
       res.status(404).json({ message: 'User not found' });
     }
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    if (error instanceof Error) {
+      res.status(400).json({ error: error.message });
+    } else {
+      res.status(400).json({ error: 'An unknown error occurred' });
+    }
   }
 };
 
-export const deleteUserController = async (req: Request, res: Response) => {
-  const user = await deleteUser(req.params.id);
+const deleteUserController = async (req: Request, res: Response) => {
+  const user = await UserServices.deleteUser(req.params.id);
   if (user) {
     res.status(204).send();
   } else {
@@ -55,8 +59,7 @@ export const deleteUserController = async (req: Request, res: Response) => {
   }
 };
 
-
-export const UserController  = {
+export const UserController = {
   createUserController,
   getUsersController,
   getUserByIdController,
