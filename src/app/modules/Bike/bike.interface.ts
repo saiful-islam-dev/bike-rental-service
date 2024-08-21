@@ -1,6 +1,12 @@
+
 export interface IBike {
-  name: string;
-  type: string;
-  availability: boolean;
-  pricePerHour: number;
+    name: string;
+    description: string;
+    pricePerHour: number;
+    isAvailable: boolean;
+    cc: number;
+    year: number;
+    model: string;
+    brand: string;
 }
+
