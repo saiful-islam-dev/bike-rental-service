@@ -9,4 +9,4 @@ router.get('/:id', BookingController.getBookingByIdController);
 router.put('/:id', BookingController.updateBookingController);
 router.delete('/:id', BookingController.deleteBookingController);
 
-export default router;
+export const bikeRoutes = router;
