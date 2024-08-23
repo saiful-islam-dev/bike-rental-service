@@ -17,7 +17,7 @@ const userSchema = new Schema<IUser>(
     password: {
       type: String,
       required: true,
-      select: false,  // Exclude password by default in queries
+      select: false, // Exclude password by default in queries
     },
     phone: {
       type: String,
@@ -53,9 +53,10 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
-// Static method to check if a user exists by email and return with the password field
-userSchema.statics.isUserExistsByEmail = async function (email: string) {
-  return this.findOne({ email }).select('+password');
+// Static method to check if user exists by email
+userSchema.statics.isUserExistsByUsername = async function (email: string) {
+  console.log({ email });
+  return await this.findOne({ email }).select('+password');
 };
 
 // Static method to compare plain text password with hashed password
