@@ -4,12 +4,12 @@ import httpStatus from 'http-status';
 import { BookingServices } from './rental.service';
 
 const createBookingController = catchAsync(async (req, res) => {
-  const result = await BookingServices.createBooking(req.body);
+  const result = await BookingServices.createBooking(req.user._id, req.body);
 
   sendResponse(res, {
     success: true,
-    statusCode: httpStatus.CREATED,
-    message: 'Course created successfully',
+    statusCode: httpStatus.OK,
+    message: 'Rental created successfully',
     data: result,
   });
 });

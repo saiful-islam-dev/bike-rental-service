@@ -1,29 +1,39 @@
 import { IBooking } from './rental.interface';
-import { Booking } from './rental.model';
+import { Rental } from './rental.model';
 
-const createBooking = async (bookingData: IBooking): Promise<IBooking> => {
-  const booking = new Booking(bookingData);
-  await booking.save();
-  return booking;
+const createBooking = async (
+  userId: string,
+  rentalData: Omit<IBooking, 'userId'>,
+): Promise<IBooking> => {
+  const data = {
+    userId,
+    bikeId: rentalData.bikeId,
+    startTime: rentalData.startTime,
+    endTime: rentalData.endTime || new Date(),
+    totalPrice: rentalData.totalPrice || 0,
+  };
+
+  const result = await Rental.create(data);
+  return result;
 };
 
 const getBookings = async (): Promise<IBooking[]> => {
-  return Booking.find().populate('userId').populate('bikeId');
+  return Rental.find().populate('userId').populate('bikeId');
 };
 
 const getBookingById = async (id: string): Promise<IBooking | null> => {
-  return Booking.findById(id).populate('userId').populate('bikeId');
+  return Rental.findById(id).populate('userId').populate('bikeId');
 };
 
 const updateBooking = async (
   id: string,
   updateData: Partial<IBooking>,
 ): Promise<IBooking | null> => {
-  return Booking.findByIdAndUpdate(id, updateData, { new: true });
+  return Rental.findByIdAndUpdate(id, updateData, { new: true });
 };
 
 const deleteBooking = async (id: string): Promise<IBooking | null> => {
-  return Booking.findByIdAndDelete(id);
+  return Rental.findByIdAndDelete(id);
 };
 
 export const BookingServices = {
