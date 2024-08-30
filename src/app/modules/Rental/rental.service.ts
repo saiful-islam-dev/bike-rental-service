@@ -1,5 +1,5 @@
-import { IBooking } from './booking.interface';
-import { Booking } from './booking.model';
+import { IBooking } from './rental.interface';
+import { Booking } from './rental.model';
 
 const createBooking = async (bookingData: IBooking): Promise<IBooking> => {
   const booking = new Booking(bookingData);

@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { BookingController } from './booking.controller';
+import { BookingController } from './rental.controller';
 
 const router = Router();
 
@@ -9,4 +9,4 @@ router.get('/:id', BookingController.getBookingByIdController);
 router.put('/:id', BookingController.updateBookingController);
 router.delete('/:id', BookingController.deleteBookingController);
 
-export const bikeRoutes = router;
+export const rentalRoutes = router;

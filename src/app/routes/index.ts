@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import { userRoutes } from '../modules/User/user.route';
-import { bikeRoutes } from '../modules/Booking/booking.route';
-import { rentalRoutes } from '../modules/Bike/bike.route';
+import { bakeRoutes } from '../modules/Bike/bike.route';
 import { authRoutes } from '../modules/Auth/auth.route';
+import { rentalRoutes } from '../modules/Rental/rental.route';
 
 const router = Router();
 
@@ -13,7 +13,7 @@ const moduleRoutes = [
   },
   {
     path: '/bikes',
-    route: bikeRoutes,
+    route: bakeRoutes,
   },
   {
     path: '/rentals',

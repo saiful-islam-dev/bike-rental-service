@@ -8,7 +8,7 @@ const createBikeController = catchAsync(async (req, res) => {
 
   sendResponse(res, {
     success: true,
-    statusCode: httpStatus.CREATED,
+    statusCode: httpStatus.OK,
     message: 'Course created successfully',
     data: result,
   });
@@ -19,8 +19,8 @@ const getBikesController = catchAsync(async (req, res) => {
 
   sendResponse(res, {
     success: true,
-    statusCode: httpStatus.CREATED,
-    message: 'Course created successfully',
+    statusCode: httpStatus.OK,
+    message: 'Bikes retrieved successfully',
     data: result,
   });
 });

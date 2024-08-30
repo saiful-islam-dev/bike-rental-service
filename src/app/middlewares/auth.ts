@@ -10,6 +10,7 @@ import catchAsync from '../utils/catchAsync';
 const auth = (...requiredRoles: TUserRoll[]) => {
   return catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const token = req.headers.authorization;
+
     // checking if the token is missing
     if (!token) {
       throw new AppError(

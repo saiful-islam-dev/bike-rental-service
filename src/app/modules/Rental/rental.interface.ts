@@ -1,6 +1,8 @@
+import { Types } from 'mongoose';
+
 export interface IBooking {
-  userId: string;
-  bikeId: string;
+  userId: Types.ObjectId;
+  bikeId: Types.ObjectId;
   startTime: Date;
   endTime: Date;
   totalPrice: number;

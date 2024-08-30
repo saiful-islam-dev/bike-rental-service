@@ -5,7 +5,7 @@ import { User } from './user.model';
 
 const getUsers = async (data: { email: string }): Promise<IUser[]> => {
   const users = await User.find({ email: data.email });
-  
+
   if (users.length === 0) {
     console.log('No users found');
     throw new AppError(
@@ -28,7 +28,7 @@ const updateUser = async (
   console.log(`Updating user with ID: ${id}`, updateData);
 
   // Find the user by ID and update with the new data
-  const updatedUser = await User.findByIdAndUpdate(id, updateData, { 
+  const updatedUser = await User.findByIdAndUpdate(id, updateData, {
     new: true, // Return the updated document
     runValidators: true, // Ensure the update adheres to the schema validation
   });
