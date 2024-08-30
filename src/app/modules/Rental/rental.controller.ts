@@ -15,29 +15,19 @@ const createBookingController = catchAsync(async (req, res) => {
 });
 
 const getBookingsController = catchAsync(async (req, res) => {
-  const result = await BookingServices.getBookings();
+  const userId = req.user._id;
+  const result = await BookingServices.getBookings(userId);
 
   sendResponse(res, {
     success: true,
-    statusCode: httpStatus.CREATED,
-    message: 'Course created successfully',
-    data: result,
-  });
-});
-
-const getBookingByIdController = catchAsync(async (req, res) => {
-  const result = await BookingServices.getBookingById(req.params.id);
-
-  sendResponse(res, {
-    success: true,
-    statusCode: httpStatus.CREATED,
-    message: 'Course created successfully',
+    statusCode: httpStatus.OK,
+    message: 'Rentals retrieved successfully',
     data: result,
   });
 });
 
 const updateBookingController = catchAsync(async (req, res) => {
-  const result = await BookingServices.updateBooking(req.params.id, req.body);
+  const result = await BookingServices.updateBooking(req.params.id);
 
   sendResponse(res, {
     success: true,
@@ -47,21 +37,30 @@ const updateBookingController = catchAsync(async (req, res) => {
   });
 });
 
-const deleteBookingController = catchAsync(async (req, res) => {
-  const result = await BookingServices.deleteBooking(req.params.id);
+// const deleteBookingController = catchAsync(async (req, res) => {
+//   const result = await BookingServices.deleteBooking(req.params.id);
 
-  sendResponse(res, {
-    success: true,
-    statusCode: httpStatus.CREATED,
-    message: 'Course created successfully',
-    data: result,
-  });
-});
+//   sendResponse(res, {
+//     success: true,
+//     statusCode: httpStatus.CREATED,
+//     message: 'Course created successfully',
+//     data: result,
+//   });
+// });
+
+// const getBookingByIdController = catchAsync(async (req, res) => {
+//   const result = await BookingServices.getBookingById(req.params.id);
+
+//   sendResponse(res, {
+//     success: true,
+//     statusCode: httpStatus.CREATED,
+//     message: 'Course created successfully',
+//     data: result,
+//   });
+// });
 
 export const BookingController = {
   createBookingController,
   getBookingsController,
-  getBookingByIdController,
   updateBookingController,
-  deleteBookingController,
 };

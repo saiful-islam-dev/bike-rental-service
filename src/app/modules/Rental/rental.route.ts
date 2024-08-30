@@ -11,12 +11,12 @@ router.post(
   BookingController.createBookingController,
 );
 
-router.get('/', BookingController.getBookingsController);
+router.get(
+  '/',
+  auth(USER_ROLE.admin, USER_ROLE.user),
+  BookingController.getBookingsController,
+);
 
-router.get('/:id', BookingController.getBookingByIdController);
-
-router.put('/:id', BookingController.updateBookingController);
-
-router.delete('/:id', BookingController.deleteBookingController);
+router.put('/:id/return', BookingController.updateBookingController);
 
 export const rentalRoutes = router;
