@@ -55,7 +55,6 @@ userSchema.pre('save', async function (next) {
 
 // Static method to check if user exists by email
 userSchema.statics.isUserExistsByUsername = async function (email: string) {
-  console.log({ email });
   return await this.findOne({ email }).select('+password');
 };
 

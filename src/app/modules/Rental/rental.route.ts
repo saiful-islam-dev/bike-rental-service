@@ -8,15 +8,15 @@ const router = Router();
 router.post(
   '/',
   auth(USER_ROLE.admin, USER_ROLE.user),
-  BookingController.createBookingController,
+  BookingController.createRentalController,
 );
 
 router.get(
   '/',
   auth(USER_ROLE.admin, USER_ROLE.user),
-  BookingController.getBookingsController,
+  BookingController.getRentalController,
 );
 
-router.put('/:id/return', BookingController.updateBookingController);
+router.put('/:id/return', BookingController.updateRentalController);
 
 export const rentalRoutes = router;

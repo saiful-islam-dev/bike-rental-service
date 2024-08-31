@@ -14,7 +14,6 @@ const getUsersController = catchAsync(async (req, res) => {
 });
 
 const updateUserController = catchAsync(async (req, res) => {
-  console.log(req.user);
   const result = await UserServices.updateUser(req.user._id, req.body);
   sendResponse(res, {
     success: true,

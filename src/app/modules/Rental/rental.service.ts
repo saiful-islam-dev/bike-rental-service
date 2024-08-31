@@ -1,11 +1,11 @@
 import { Bike } from '../Bike/bike.model';
-import { IBooking } from './rental.interface';
+import { TRental } from './rental.interface';
 import { Rental } from './rental.model';
 
-const createBooking = async (
+const createRental = async (
   userId: string,
-  rentalData: Omit<IBooking, 'userId'>,
-): Promise<IBooking> => {
+  rentalData: Omit<TRental, 'userId'>,
+): Promise<TRental> => {
   const data = {
     userId,
     bikeId: rentalData.bikeId,
@@ -18,16 +18,16 @@ const createBooking = async (
   return result;
 };
 
-const getBookings = async (userId: string): Promise<IBooking[]> => {
+const getRentals = async (userId: string): Promise<TRental[]> => {
   const result = await Rental.find({ userId });
   return result;
 };
 
-const getBookingById = async (id: string): Promise<IBooking | null> => {
+const getRentalById = async (id: string): Promise<TRental | null> => {
   return Rental.findById(id).populate('userId').populate('bikeId');
 };
 
-const updateBooking = async (id: string): Promise<IBooking | null> => {
+const updateRental = async (id: string): Promise<TRental | null> => {
   // Step 1: Fetch the rental record
   const rental = await Rental.findById(id);
   if (!rental) {
@@ -60,14 +60,14 @@ const updateBooking = async (id: string): Promise<IBooking | null> => {
   return updatedRental;
 };
 
-const deleteBooking = async (id: string): Promise<IBooking | null> => {
+const deleteRental = async (id: string): Promise<TRental | null> => {
   return Rental.findByIdAndDelete(id);
 };
 
-export const BookingServices = {
-  createBooking,
-  getBookings,
-  getBookingById,
-  updateBooking,
-  deleteBooking,
+export const RentalServices = {
+  createRental,
+  getRentals,
+  getRentalById,
+  updateRental,
+  deleteRental,
 };

@@ -7,7 +7,6 @@ const getUsers = async (data: { email: string }): Promise<IUser[]> => {
   const users = await User.find({ email: data.email });
 
   if (users.length === 0) {
-    console.log('No users found');
     throw new AppError(
       httpStatus.NOT_FOUND,
       'Unauthorized Access',
@@ -25,8 +24,6 @@ const updateUser = async (
   id: string,
   updateData: Partial<IUser>,
 ): Promise<IUser | null> => {
-  console.log(`Updating user with ID: ${id}`, updateData);
-
   // Find the user by ID and update with the new data
   const updatedUser = await User.findByIdAndUpdate(id, updateData, {
     new: true, // Return the updated document

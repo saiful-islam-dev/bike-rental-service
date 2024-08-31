@@ -1,10 +1,10 @@
 import catchAsync from '../../utils/catchAsync';
 import sendResponse from '../../utils/sendResponse';
 import httpStatus from 'http-status';
-import { BookingServices } from './rental.service';
+import { RentalServices } from './rental.service';
 
-const createBookingController = catchAsync(async (req, res) => {
-  const result = await BookingServices.createBooking(req.user._id, req.body);
+const createRentalController = catchAsync(async (req, res) => {
+  const result = await RentalServices.createRental(req.user._id, req.body);
 
   sendResponse(res, {
     success: true,
@@ -14,9 +14,9 @@ const createBookingController = catchAsync(async (req, res) => {
   });
 });
 
-const getBookingsController = catchAsync(async (req, res) => {
+const getRentalController = catchAsync(async (req, res) => {
   const userId = req.user._id;
-  const result = await BookingServices.getBookings(userId);
+  const result = await RentalServices.getRentals(userId);
 
   sendResponse(res, {
     success: true,
@@ -26,41 +26,19 @@ const getBookingsController = catchAsync(async (req, res) => {
   });
 });
 
-const updateBookingController = catchAsync(async (req, res) => {
-  const result = await BookingServices.updateBooking(req.params.id);
+const updateRentalController = catchAsync(async (req, res) => {
+  const result = await RentalServices.updateRental(req.params.id);
 
   sendResponse(res, {
     success: true,
-    statusCode: httpStatus.CREATED,
-    message: 'Course created successfully',
+    statusCode: httpStatus.OK,
+    message: 'Bike returned successfully',
     data: result,
   });
 });
 
-// const deleteBookingController = catchAsync(async (req, res) => {
-//   const result = await BookingServices.deleteBooking(req.params.id);
-
-//   sendResponse(res, {
-//     success: true,
-//     statusCode: httpStatus.CREATED,
-//     message: 'Course created successfully',
-//     data: result,
-//   });
-// });
-
-// const getBookingByIdController = catchAsync(async (req, res) => {
-//   const result = await BookingServices.getBookingById(req.params.id);
-
-//   sendResponse(res, {
-//     success: true,
-//     statusCode: httpStatus.CREATED,
-//     message: 'Course created successfully',
-//     data: result,
-//   });
-// });
-
 export const BookingController = {
-  createBookingController,
-  getBookingsController,
-  updateBookingController,
+  createRentalController,
+  getRentalController,
+  updateRentalController,
 };
