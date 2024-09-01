@@ -1,11 +1,11 @@
 import { z } from 'zod';
 
-export const createBookingSchema = z.object({
-  userId: z.string().min(1),
-  bikeId: z.string().min(1),
-  startTime: z.date(),
-  endTime: z.date(),
-  totalPrice: z.number().min(0),
+export const createRentalValidationSchema = z.object({
+  bikeId: z
+    .string()
+    .min(1, { message: 'Bike ID is required' })
+    .regex(/^[a-fA-F0-9]{24}$/, { message: 'Invalid Bike ID format' }),
+  startTime: z.string().refine((val) => !isNaN(Date.parse(val)), {
+    message: 'Invalid date format for start time',
+  }),
 });
-
-export const updateBookingSchema = createBookingSchema.partial();
