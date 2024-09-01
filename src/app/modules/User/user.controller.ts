@@ -17,8 +17,8 @@ const updateUserController = catchAsync(async (req, res) => {
   const result = await UserServices.updateUser(req.user._id, req.body);
   sendResponse(res, {
     success: true,
-    statusCode: httpStatus.CREATED,
-    message: 'User profile retrieved successfully',
+    statusCode: httpStatus.OK,
+    message: 'Profile updated successfully',
     data: result,
   });
 });

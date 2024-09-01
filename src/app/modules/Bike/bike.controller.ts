@@ -9,7 +9,7 @@ const createBikeController = catchAsync(async (req, res) => {
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: 'Course created successfully',
+    message: 'Bike added successfully',
     data: result,
   });
 });
@@ -41,8 +41,8 @@ const updateBikeController = catchAsync(async (req, res) => {
 
   sendResponse(res, {
     success: true,
-    statusCode: httpStatus.CREATED,
-    message: 'Course created successfully',
+    statusCode: httpStatus.OK,
+    message: 'Bike updated successfully',
     data: result,
   });
 });
@@ -52,8 +52,8 @@ const deleteBikeController = catchAsync(async (req, res) => {
 
   sendResponse(res, {
     success: true,
-    statusCode: httpStatus.CREATED,
-    message: 'Course created successfully',
+    statusCode: httpStatus.OK,
+    message: 'Bike deleted successfully',
     data: result,
   });
 });

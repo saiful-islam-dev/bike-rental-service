@@ -21,7 +21,7 @@ const getRentalController = catchAsync(async (req, res) => {
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: 'Rentals retrieved successfully',
+    message: 'Bike returned successfully',
     data: result,
   });
 });
